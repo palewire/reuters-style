@@ -303,6 +303,11 @@ table.align-default {
     margin-left: 0 !important;
 }
 
+#usage dd strong {
+    font-weight: 400 !important;
+    font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+}
+
 #usage dl.field-list > dt {
     font-weight: 400 !important;
     padding-left: 0;
