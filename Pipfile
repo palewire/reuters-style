@@ -26,6 +26,7 @@ sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 pytz = "*"
 types-pytz = "*"
+tomli = "*"
 
 [packages]
 exceptiongroup = "*"
