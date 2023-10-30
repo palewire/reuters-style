@@ -25,3 +25,10 @@ The library currently features the following methods:
 ```{eval-rst}
 .. automodule:: reuters_style
 ```
+
+## Links
+
+- Documentation: [palewi.re/docs/reuters-style/](https://palewi.re/docs/reuters-style/)
+- Code: [github.com/palewire/reuters-style](https://github.com/palewire/reuters-style)
+- Issues: [github.com/palewire/reuters-style/issues](https://github.com/palewire/reuters-style/issues)
+- Packaging: [pypi.org/project/reuters-style](https://pypi.org/project/reuters-style)

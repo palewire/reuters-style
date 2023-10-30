@@ -52,7 +52,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Ben Welsh",
     author_email="b@palewi.re",
-    url="https://www.github.com/palewire/reuters-style",
+    url="https://palewi.re/docs/reuters-style/",
     project_urls={
         "Maintainer": "https://github.com/palewire",
         "Source": "https://www.github.com/palewire/reuters-style",
