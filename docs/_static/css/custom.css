@@ -316,3 +316,7 @@ table.align-default {
 #usage p.rubric {
     font-weight: 400 !important;
 }
+
+#usage .highlight pre {
+    padding-left: 0 !important;git
+}

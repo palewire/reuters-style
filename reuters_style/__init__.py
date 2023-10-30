@@ -29,7 +29,7 @@ def date(dt: datetime) -> str:
     Returns:
         The formatted date. (str)
 
-    Example:
+    Examples:
         >>> import reuters_style
         >>> reuters_style.date(datetime(2021, 9, 1))
         'Sept. 1, 2021'
@@ -67,7 +67,7 @@ def dayofweek(dt: datetime, tabular: bool = False) -> str:
     Returns:
         The formatted day of the week. (str)
 
-    Example:
+    Examples:
         >>> import reuters_style
         >>> reuters_style.dayofweek(datetime(2021, 9, 1))
         'Wednesday'
@@ -117,7 +117,7 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
     Returns:
         The formatted time. (str)
 
-    Example:
+    Examples:
         >>> import reuters_style
         >>> reuters_style.time(datetime(2021, 9, 1, 12, 0))
         'noon GMT'
