@@ -1,3 +1,1 @@
-A template for open-source Python software repositories
-
-Instructions for how to get started working the code can be found in `CONTRIBUTING.md`.
+Format dates, numbers and text to conform with the Reuters Style Guide, the standards that guide the world's largest independent newsroom

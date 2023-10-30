@@ -4,12 +4,12 @@ import sys
 from datetime import datetime
 
 # Insert the parent directory into the path
-sys.path.insert(0, os.path.abspath("../your_source_code"))
+sys.path.insert(0, os.path.abspath("../reuters_style"))
 
-project = "your-package-name"
+project = "reuters-style"
 year = datetime.now().year
 copyright = f"{year}"
-author = "your-name"
+author = "Ben Welsh"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]

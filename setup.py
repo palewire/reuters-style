@@ -46,19 +46,19 @@ def local_version(version):
 
 
 setup(
-    name="your-package-name",  # <--- Your module's name goes here
-    description="your-package-description",  # <--- Your module's description goes here
+    name="reuters-style",
+    description="Format dates, numbers and text to conform with the Reuters Style Guide, the standards that guide the world's largest independent newsroom",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author="your name",
-    author_email="your@email.com",
-    url="http://www.github.com/your-user-name/your-repo-slug",
+    author="Ben Welsh",
+    author_email="b@palewi.re",
+    url="https://www.github.com/palewire/reuters-style",
     project_urls={
-        "Maintainer": "https://github.com/your-user-name",
-        "Source": "https://github.com/your-user-name/your-repo-slug",
-        "Tracker": "https://github.com/your-user-name/your-repo-slug/issues",
+        "Maintainer": "https://github.com/palewire",
+        "Source": "https://www.github.com/palewire/reuters-style",
+        "Tracker": "https://www.github.com/palewire/reuters-style",
     },
-    packages=("",),  # <--- Your module's directory goes here
+    packages=("reuters_style",),
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     license="MIT",
@@ -66,7 +66,6 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",

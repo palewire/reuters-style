@@ -22,9 +22,9 @@ sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-click = "*"
 sphinx-rtd-theme = "*"
-sphinxcontrib-napoleon = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
+pytz = "*"
 
 [packages]
 exceptiongroup = "*"
