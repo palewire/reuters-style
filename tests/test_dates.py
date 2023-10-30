@@ -37,7 +37,8 @@ def test_time():
     assert reuters_style.time(datetime(2021, 9, 1, 12, 0)) == "noon GMT"
     assert reuters_style.time(datetime(2021, 9, 1, 0, 0)) == "midnight GMT"
     assert (
-        reuters_style.time(datetime(2021, 9, 1, 12, 0), include_timezone=False) == "noon"
+        reuters_style.time(datetime(2021, 9, 1, 12, 0), include_timezone=False)
+        == "noon"
     )
     assert (
         reuters_style.time(datetime(2021, 9, 1, 0, 0), include_timezone=False)
@@ -70,7 +71,8 @@ def test_time():
     )
     tz = pytz.timezone("Asia/Tokyo")
     assert (
-        reuters_style.time(tz.localize(datetime(2021, 9, 1, 12, 30))) == "12:30 p.m. JST"
+        reuters_style.time(tz.localize(datetime(2021, 9, 1, 12, 30)))
+        == "12:30 p.m. JST"
     )
     assert (
         reuters_style.time(
