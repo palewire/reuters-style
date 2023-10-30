@@ -299,15 +299,15 @@ table.align-default {
     overflow-x: auto;
 }
 
-#api-reference dd {
-    margin-left: 0;
+#usage dd {
+    margin-left: 0 !important;
 }
 
-#api-reference dl.field-list > dt {
+#usage dl.field-list > dt {
     font-weight: 400 !important;
     padding-left: 0;
 }
 
-#api-reference p.rubric {
+#usage p.rubric {
     font-weight: 400 !important;
 }
