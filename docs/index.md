@@ -17,6 +17,11 @@ pipenv install reuters-style
 
 The library currently features the following methods:
 
+* [date](#reuters_style.date)
+* [dayofweek](#reuters_style.dayofweek)
+* [time](#reuters_style.time)
+
+
 ```{eval-rst}
 .. automodule:: reuters_style
 ```
