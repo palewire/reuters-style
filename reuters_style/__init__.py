@@ -190,6 +190,71 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
     return formatted_time
 
 
+def validate_slug(slug: str) -> bool:
+    """Check whether a full slug is valid.
+
+    Style guide entry:
+
+        A slug is a simple human readable method of grouping content for packaging,
+        either internally or externally. By using the same slug for the same real world
+        event Reuters can ensure that it is easy to find pictures, text, graphics,
+        video, audio that all belong together.
+
+        A slug has two parts:
+
+        • a packaging slug (FERRARI-IPO)
+        • a wild slug (PROSPECTUS)
+
+        They come together as the full slug in FERRARI-IPO/PROSPECTUS.
+
+    Args:
+        slug: The full slug to validate. (str)
+
+    Returns:
+        Whether the full slug is valid. (bool)
+
+    Raises:
+        ValueError: If the full slug is invalid.
+
+    Examples:
+        >>> import reuters_style
+        >>> reuters_style.validate_slug('FERRARI-IPO/PROSPECTUS')
+        True
+        >>> reuters_style.validate_slug('FERRARI-IPO/PROSPECTUS REPORT')
+        Traceback (most recent call last):
+            ...
+        ValueError: Wild slug can only contain uppercase letters, hyphens and slashes.
+    """
+    # Verify that the slug is a string
+    if not isinstance(slug, str):
+        raise ValueError("Full slug must be a string.")
+
+    # Verify that the slug is not empty
+    if not slug:
+        raise ValueError("Full slug cannot be empty.")
+
+    # Verify that the slug is not too long
+    if len(slug) > 64:
+        raise ValueError("Full slug cannot be longer than 64 characters.")
+
+    # Verify that the slug contains only a single slash
+    if slug.count("/") != 1:
+        raise ValueError("Full slug can only contain one slash.")
+
+    # Split on the slash
+    packaging_slug, wild_slug = slug.split("/")
+
+    # Validate the packaging slug
+    validate_packaging_slug(packaging_slug + "/")
+
+    # Validate the wild slug, if there is one
+    if wild_slug:
+        validate_wild_slug(wild_slug)
+
+    # If we got this far, the slug is valid
+    return True
+
+
 def validate_packaging_slug(slug: str) -> bool:
     """Check whether a packaging slug is valid.
 
@@ -321,7 +386,7 @@ def validate_wild_slug(slug: str) -> bool:
         >>> reuters_style.validate_wild_slug('PROSPECTUS REPORT')
         Traceback (most recent call last):
             ...
-        ValueError: Invalid wild slug.
+        ValueError: Wild slug can only contain uppercase letters, hyphens and slashes.
     """
     # Verify that the slug is a string
     if not isinstance(slug, str):
@@ -349,24 +414,22 @@ def validate_wild_slug(slug: str) -> bool:
     terms = slug.split("-")
     if len(terms) > 5:
         raise ValueError(
-            "Packaging slug must contain one to five terms separated by hyphens."
+            "Wild slug must contain one to five terms separated by hyphens."
         )
 
     # Verify that all of the terms are at least two characters long
     for term in terms:
         if len(term) < 2:
-            raise ValueError(
-                "Packaging slug terms must be at least two characters long."
-            )
+            raise ValueError("Wild slug terms must be at least two characters long.")
 
     # Verify that the terms are only alphanumeric
     for term in terms:
         if not term.isalnum():
-            raise ValueError("Packaging slug terms can only be alphanumeric.")
+            raise ValueError("Wild slug terms can only be alphanumeric.")
 
     # Verify that there are no duplicate terms
     if len(terms) != len(set(terms)):
-        raise ValueError("Packaging slug terms cannot be duplicated.")
+        raise ValueError("Wild slug terms cannot be duplicated.")
 
     # If we got this far, the slug is valid
     return True

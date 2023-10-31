@@ -4,6 +4,28 @@ import pytest
 import reuters_style
 
 
+def test_validate_slug():
+    """Test validate_slug()."""
+    assert reuters_style.validate_slug("FERRARI-IPO/")
+    assert reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS")
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug("FERRARIIPO")
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug("FERRaRI-IPO")
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug("FERRARI IPO")
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug(
+            "FERRARIFERRARIFERRARIFERRARIFERRARIFERRARIFERRARIFERRARIFERRARIFERRARIFERRARI-IPO-FOO/WILD-SLUG"
+        )
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug(222)
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug("")
+    with pytest.raises(ValueError):
+        reuters_style.validate_slug(None)
+
+
 def test_validate_packaging_slug():
     """Test validate_packaging_slug()."""
     assert reuters_style.validate_packaging_slug("FERRARI-IPO/")
