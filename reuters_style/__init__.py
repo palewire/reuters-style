@@ -188,3 +188,97 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
 
     # Format the time
     return formatted_time
+
+
+def validate_packaging_slug(slug: str) -> bool:
+    """Check whether a packaging slug is valid.
+
+    Style guide entry:
+
+        A slug is a simple human readable method of grouping content for packaging,
+        either internally or externally. By using the same slug for the same real world
+        event Reuters can ensure that it is easy to find pictures, text, graphics,
+        video, audio that all belong together.
+
+        A slug has two parts:
+
+        • a PACKAGING SLUG (FERRARI-IPO)
+        • a WILD SLUG (PROSPECTUS)
+
+        FERRARI-IPO/PROSPECTUS
+
+        The packaging slug is the part that is used to pull a package of stories together
+        with visuals and so MUST STAY THE SAME for as long as the story runs through updates,
+        wrap-ups and for days, weeks or even months sometimes. Once a packaging slug
+        (the first two words before the "/" mark) has been established, it should be adopted
+        by all services and regions. For example: MALAYSIA-POLITICS/ or BRITAIN-POLITICS/.
+
+    Args:
+        slug: The packaging slug to validate. (str)
+
+    Returns:
+        Whether the packaging slug is valid. (bool)
+
+    Raises:
+        ValueError: If the packaging slug is invalid.
+
+    Examples:
+        >>> import reuters_style
+        >>> reuters_style.validate_packaging_slug('FERRARI-IPO/')
+        True
+        >>> reuters_style.validate_packaging_slug('FERRaRI IPO')
+        Traceback (most recent call last):
+            ...
+        ValueError: Invalid packaging slug.
+    """
+    # Verify that the slug is a string
+    if not isinstance(slug, str):
+        raise ValueError("Packaging slug must be a string.")
+
+    # Verify that the slug is not empty
+    if not slug:
+        raise ValueError("Packaging slug cannot be empty.")
+
+    # Verify that the slug is not too long
+    if len(slug) > 64:
+        raise ValueError("Packaging slug cannot be longer than 64 characters.")
+
+    # Verify that the slug only contains uppercase letter, hyphens and slashes
+    if not slug.isupper():
+        raise ValueError(
+            "Packaging slug can only contain uppercase letters, hyphens and slashes."
+        )
+
+    # Verify that the slug ends with a slash
+    if not slug.endswith("/"):
+        raise ValueError("Packaging slug must end with a slash.")
+
+    # Verify that the slug contains only one slash
+    if slug.count("/") != 1:
+        raise ValueError("Packaging slug can only contain one slash.")
+
+    # Verify that the slug only contains two to five terms separated by hyphens
+    terms = slug.split("/")[0].split("-")
+    if len(terms) < 2 or len(terms) > 5:
+        raise ValueError(
+            "Packaging slug must contain two to five terms separated by hyphens."
+        )
+
+    # Verify that all of the terms are at least two characters long
+    for term in terms:
+        if len(term) < 2:
+            raise ValueError(
+                "Packaging slug terms must be at least two characters long."
+            )
+
+    # Verify that the terms are only alphanumeric
+    for term in terms:
+        if not term.isalnum():
+            raise ValueError("Packaging slug terms can only be alphanumeric.")
+
+    # Verify that there are no duplicate terms
+    if len(terms) != len(set(terms)):
+        raise ValueError("Packaging slug terms cannot be duplicated.")
+
+    # If we got this far, the slug is valid
+    return True

@@ -20,6 +20,7 @@ The library currently features the following methods:
 * [date](#reuters_style.date)
 * [dayofweek](#reuters_style.dayofweek)
 * [time](#reuters_style.time)
+* [validate_packaging_slug](#reuters_style.validate_packaging_slug)
 
 
 ```{eval-rst}
