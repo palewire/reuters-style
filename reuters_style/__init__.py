@@ -202,10 +202,10 @@ def validate_packaging_slug(slug: str) -> bool:
 
         A slug has two parts:
 
-        • a PACKAGING SLUG (FERRARI-IPO)
-        • a WILD SLUG (PROSPECTUS)
+        • a packaging slug (FERRARI-IPO)
+        • a wild slug (PROSPECTUS)
 
-        FERRARI-IPO/PROSPECTUS
+        They come together as the full slug in FERRARI-IPO/PROSPECTUS.
 
         The packaging slug is the part that is used to pull a package of stories together
         with visuals and so MUST STAY THE SAME for as long as the story runs through updates,
@@ -229,7 +229,7 @@ def validate_packaging_slug(slug: str) -> bool:
         >>> reuters_style.validate_packaging_slug('FERRaRI IPO')
         Traceback (most recent call last):
             ...
-        ValueError: Invalid packaging slug.
+        ValueError: Packaging slug can only contain uppercase letters, hyphens and slashes.
     """
     # Verify that the slug is a string
     if not isinstance(slug, str):
@@ -262,6 +262,94 @@ def validate_packaging_slug(slug: str) -> bool:
     if len(terms) < 2 or len(terms) > 5:
         raise ValueError(
             "Packaging slug must contain two to five terms separated by hyphens."
+        )
+
+    # Verify that all of the terms are at least two characters long
+    for term in terms:
+        if len(term) < 2:
+            raise ValueError(
+                "Packaging slug terms must be at least two characters long."
+            )
+
+    # Verify that the terms are only alphanumeric
+    for term in terms:
+        if not term.isalnum():
+            raise ValueError("Packaging slug terms can only be alphanumeric.")
+
+    # Verify that there are no duplicate terms
+    if len(terms) != len(set(terms)):
+        raise ValueError("Packaging slug terms cannot be duplicated.")
+
+    # If we got this far, the slug is valid
+    return True
+
+
+def validate_wild_slug(slug: str) -> bool:
+    """Check whether a wild slug is valid.
+
+    Style guide entry:
+
+        A slug is a simple human readable method of grouping content for packaging,
+        either internally or externally. By using the same slug for the same real world
+        event Reuters can ensure that it is easy to find pictures, text, graphics,
+        video, audio that all belong together.
+
+        A slug has two parts:
+
+        • a packaging slug (FERRARI-IPO)
+        • a wild slug (PROSPECTUS)
+
+        They come together as the full slug in FERRARI-IPO/PROSPECTUS.
+
+        If this story develops other angles that warrant separate content, you can add
+        words after the “/” mark, like this: MALAYSIA-POLITICS/STATEMENT, MALAYSIA-POLITICS/PROTEST,
+        or BRITAIN-POLITICS/PM. The part after the “/” mark is called the wild slug.
+
+    Args:
+        slug: The wild slug to validate. (str)
+
+    Returns:
+        Whether the wild slug is valid. (bool)
+
+    Raises:
+        ValueError: If the wild slug is invalid.
+
+    Examples:
+        >>> import reuters_style
+        >>> reuters_style.validate_wild_slug('PROSPECTUS')
+        True
+        >>> reuters_style.validate_wild_slug('PROSPECTUS REPORT')
+        Traceback (most recent call last):
+            ...
+        ValueError: Invalid wild slug.
+    """
+    # Verify that the slug is a string
+    if not isinstance(slug, str):
+        raise ValueError("Wild slug must be a string.")
+
+    # Verify that the slug is not empty
+    if not slug:
+        raise ValueError("Wild slug cannot be empty.")
+
+    # Verify that the slug is not too long
+    if len(slug) > 64:
+        raise ValueError("Wild slug cannot be longer than 64 characters.")
+
+    # Verify that the slug only contains uppercase letter, hyphens and slashes
+    if not slug.isupper():
+        raise ValueError(
+            "Wild slug can only contain uppercase letters, hyphens and slashes."
+        )
+
+    # Verify that the slug does not include a slash
+    if "/" in slug:
+        raise ValueError("Wild slug cannot contain a slash.")
+
+    # Verify that the slug only contains one to five terms separated by hyphens
+    terms = slug.split("-")
+    if len(terms) > 5:
+        raise ValueError(
+            "Packaging slug must contain one to five terms separated by hyphens."
         )
 
     # Verify that all of the terms are at least two characters long

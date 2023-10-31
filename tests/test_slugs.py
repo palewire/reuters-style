@@ -39,3 +39,34 @@ def test_validate_packaging_slug():
         reuters_style.validate_packaging_slug("FERRARI-CA$H/")
     with pytest.raises(ValueError):
         reuters_style.validate_packaging_slug("FERRARI-FERRARI/")
+
+
+def test_validate_wild_slug():
+    """Test validate_wild_slug()."""
+    assert reuters_style.validate_wild_slug("PROSPECTUS")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS/")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS//")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS/FOO")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("A")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug(None)
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug(1)
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug(
+            "PROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOOPROSPECTUSFOO"
+        )
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUsss")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS-FOO-BAR-BAZ-QUX-WUX")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS-FOO$BAR")
+    with pytest.raises(ValueError):
+        reuters_style.validate_wild_slug("PROSPECTUS-FOO-FOO")

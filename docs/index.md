@@ -21,7 +21,7 @@ The library currently features the following methods:
 * [dayofweek](#reuters_style.dayofweek)
 * [time](#reuters_style.time)
 * [validate_packaging_slug](#reuters_style.validate_packaging_slug)
-
+* [validate_wild_slug](#reuters_style.validate_wild_slug)
 
 ```{eval-rst}
 .. automodule:: reuters_style
