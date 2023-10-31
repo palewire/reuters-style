@@ -202,7 +202,7 @@ def validate_slug(slug: str) -> bool:
 
         A slug has two parts:
 
-        • a packaging slug (FERRARI-IPO)
+        • a packaging slug (FERRARI-IPO/)
         • a wild slug (PROSPECTUS)
 
         They come together as the full slug in FERRARI-IPO/PROSPECTUS.
@@ -267,7 +267,7 @@ def validate_packaging_slug(slug: str) -> bool:
 
         A slug has two parts:
 
-        • a packaging slug (FERRARI-IPO)
+        • a packaging slug (FERRARI-IPO/)
         • a wild slug (PROSPECTUS)
 
         They come together as the full slug in FERRARI-IPO/PROSPECTUS.
@@ -361,7 +361,7 @@ def validate_wild_slug(slug: str) -> bool:
 
         A slug has two parts:
 
-        • a packaging slug (FERRARI-IPO)
+        • a packaging slug (FERRARI-IPO/)
         • a wild slug (PROSPECTUS)
 
         They come together as the full slug in FERRARI-IPO/PROSPECTUS.
