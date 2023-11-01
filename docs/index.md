@@ -24,6 +24,7 @@ The library currently features the following methods and objects:
 * [validate_packaging_slug](#reuters_style.validate_packaging_slug)
 * [validate_wild_slug](#reuters_style.validate_wild_slug)
 * [RIC](#reuters_style.RIC)
+* [Slug](#reuters_style.Slug)
 
 ```{eval-rst}
 .. automodule:: reuters_style

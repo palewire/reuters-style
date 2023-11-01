@@ -457,3 +457,67 @@ class RIC:
             The RIC code. (str)
         """
         return self.code
+
+
+@dataclass
+class Slug:
+    """A full Reuters slug.
+
+    Style guide entry:
+
+        A slug is a simple human readable method of grouping content for packaging,
+        either internally or externally. By using the same slug for the same real world
+        event Reuters can ensure that it is easy to find pictures, text, graphics,
+        video, audio that all belong together.
+
+        A slug has two parts:
+
+        • a packaging slug (FERRARI-IPO/)
+        • a wild slug (PROSPECTUS)
+
+        They come together as the full slug in FERRARI-IPO/PROSPECTUS.
+    """
+
+    packaging_slug: str  #: The packaging slug
+    wild_slug: str  #: The wild slug
+
+    def __str__(self) -> str:
+        """Generate the string representation of the slug.
+
+        Returns:
+            The full slug. (str)
+        """
+        return f"{self.packaging_slug}{self.wild_slug}"
+
+    def __eq__(self, other: object) -> bool:
+        """Compare two slugs.
+
+        Args:
+            other: The other slug to compare. (Slug)
+
+        Returns:
+            Whether the slugs are equal. (bool)
+        """
+        if not isinstance(other, Slug):
+            return NotImplemented
+        return str(self) == str(other)
+
+    @property
+    def full_slug(self) -> str:
+        """The full slug.
+
+        Returns:
+            The full slug. (str)
+        """
+        return str(self)
+
+    def validate(self) -> bool:
+        """Validate the slug.
+
+        Returns:
+            Whether the slug is valid. (bool)
+
+        Raises:
+            ValueError: If the slug is invalid.
+        """
+        return validate_slug(str(self))
