@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import datetime, timezone
 
 
@@ -433,3 +434,26 @@ def validate_wild_slug(slug: str) -> bool:
 
     # If we got this far, the slug is valid
     return True
+
+
+@dataclass
+class RIC:
+    """Metadata about a Refinitiv Instrument Code.
+
+    Refinitiv Instrument Codes (RICs), or ticker symbols, are crucial in helping customers
+    find news and market data. All financial instruments — stocks, bonds, currencies and commodities —
+    as well as many types of economic data have RICs.
+
+    Examples include IBM.N, EUR=, and XAU=.
+    """
+
+    code: str  #: The Refinitiv Instrument Code
+    title: str  #: The more verbose definition of the code
+
+    def __str__(self) -> str:
+        """Generate the string representation of the RIC.
+
+        Returns:
+            The RIC code. (str)
+        """
+        return self.code

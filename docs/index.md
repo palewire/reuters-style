@@ -15,7 +15,7 @@ pipenv install reuters-style
 
 ## Usage
 
-The library currently features the following methods:
+The library currently features the following methods and objects:
 
 * [date](#reuters_style.date)
 * [dayofweek](#reuters_style.dayofweek)
@@ -23,6 +23,7 @@ The library currently features the following methods:
 * [validate_slug](#reuters_style.validate_slug)
 * [validate_packaging_slug](#reuters_style.validate_packaging_slug)
 * [validate_wild_slug](#reuters_style.validate_wild_slug)
+* [RIC](#reuters_style.RIC)
 
 ```{eval-rst}
 .. automodule:: reuters_style
