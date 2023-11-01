@@ -22,8 +22,11 @@ def test_slug():
     assert slug.validate() is True
 
     # Test a slug with invalid inputs
-    slug = reuters_style.Slug(
+    slug2 = reuters_style.Slug(
         packaging_slug="FERRARI-RESULssss ", wild_slug="PROSPECTUS"
     )
     with pytest.raises(ValueError):
-        slug.validate()
+        slug2.validate()
+
+    assert slug != slug2
+    assert slug == slug
