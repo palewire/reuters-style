@@ -444,7 +444,23 @@ class RIC:
     find news and market data. All financial instruments — stocks, bonds, currencies and commodities —
     as well as many types of economic data have RICs.
 
-    Examples include IBM.N, EUR=, and XAU=.
+    Real world codes include IBM.N, EUR=, and XAU=.
+
+    Args:
+        code: The Refinitiv Instrument Code. (str)
+        title: The more verbose definition of the code. (str)
+
+    Examples:
+        >>> import reuters_style
+        >>> reuters_style.RIC(code='AAPL.O', title='Apple Inc')
+        RIC(code='AAPL.O', title='Apple Inc')
+        >>> obj = reuters_style.RIC(code='XAU=', title='Gold')
+        >>> obj.code
+        'XAU='
+        >>> obj.title
+        'Gold'
+        >>> print(obj)
+        XAU=
     """
 
     code: str  #: The Refinitiv Instrument Code
@@ -476,6 +492,26 @@ class Slug:
         • a wild slug (PROSPECTUS)
 
         They come together as the full slug in FERRARI-IPO/PROSPECTUS.
+
+    Args:
+        packaging_slug: The packaging slug. (str)
+        wild_slug: The wild slug. (str)
+
+    Examples:
+        >>> import reuters_style
+        >>> reuters_style.Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
+        Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
+        >>> obj = reuters_style.Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
+        >>> obj.packaging_slug
+        'FERRARI-IPO/'
+        >>> obj.wild_slug
+        'PROSPECTUS'
+        >>> print(obj)
+        FERRARI-IPO/PROSPECTUS
+        >>> obj.full_slug
+        'FERRARI-IPO/PROSPECTUS'
+        >>> obj.validate()
+        True
     """
 
     packaging_slug: str  #: The packaging slug

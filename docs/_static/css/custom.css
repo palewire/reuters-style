@@ -299,24 +299,24 @@ table.align-default {
     overflow-x: auto;
 }
 
-#usage dd {
+dd {
     margin-left: 0 !important;
 }
 
-#usage dd strong {
+dd strong {
     font-weight: 400 !important;
     font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
 }
 
-#usage dl.field-list > dt {
+dl.field-list > dt {
     font-weight: 400 !important;
     padding-left: 0;
 }
 
-#usage p.rubric {
+p.rubric {
     font-weight: 400 !important;
 }
 
-#usage .highlight pre {
+.highlight pre {
     padding-left: 0 !important;git
 }
