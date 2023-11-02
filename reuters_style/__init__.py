@@ -126,6 +126,7 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
 
     Examples:
         >>> import reuters_style
+        >>> from datetime import datetime
         >>> reuters_style.time(datetime(2021, 9, 1, 12, 0))
         'noon GMT'
         >>> reuters_style.time(datetime(2021, 9, 1, 12, 0), include_timezone=False)
@@ -136,8 +137,11 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
         '12:30 p.m.'
         >>> import pytz
         >>> tz = pytz.timezone('Africa/Johannesburg')
-        >>> reuters_style.time(tz.localize(datetime(2021, 9, 1, 12, 30)))
+        >>> dt = tz.localize(datetime(2021, 9, 1, 12, 30))
+        >>> reuters_style.time(dt)
         '12:30 p.m. SAST'
+        >>> reuters_style.time(dt, include_timezone=False)
+        '12:30 p.m. (1030 GMT)'
     """
     # Pull the hour and minute
     hour = dt.hour
