@@ -2,34 +2,26 @@
 import os
 import sys
 from datetime import datetime
+from typing import Any
 
 # Insert the parent directory into the path
 sys.path.insert(0, os.path.abspath("../"))
 
 project = "reuters-style"
 year = datetime.now().year
-copyright = f"{year}"
-author = "Ben Welsh"
+copyright = f"{year} palewire"
+author = "palewire"
 
-templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-html_theme = "alabaster"
+html_theme = "palewire"
 html_baseurl = "/docs/"
 pygments_style = "sphinx"
-html_sidebars = {
-    "**": [
-        # "about.html",
-        # "navigation.html",
-        "relations.html",
-        "searchbox.html",
-    ]
+html_sidebars: dict[Any, Any] = {}
+html_theme_options: dict[Any, Any] = {
+    "canonical_url": f"https://palewi.re/docs/{project}/",
+    "nosidebar": True,
 }
-
-html_static_path = ["_static"]
-html_css_files = [
-    "css/custom.css",
-]
 
 autodoc_member_order = "bysource"
 autodoc_default_options = {
