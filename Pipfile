@@ -27,7 +27,7 @@ myst-parser = "*"
 pytz = "*"
 types-pytz = "*"
 tomli = "*"
-sphinx-palewire-theme = "==0.0.12"
+sphinx-palewire-theme = "==0.0.18"
 
 [packages]
 exceptiongroup = "*"
