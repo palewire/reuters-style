@@ -5,6 +5,11 @@ All notable user-facing changes are documented here. This file follows
 
 ## [Unreleased]
 
+### Changed
+
+- Use American-English color spelling throughout the documentation and package
+  description.
+
 ## [1.0.0] - 2026-10-06
 
 ### Changed
@@ -16,7 +21,7 @@ All notable user-facing changes are documented here. This file follows
 
 ### Added
 
-- Add immutable, named Reuters Graphics colour palettes and nine-step scales in
+- Add immutable, named Reuters Graphics color palettes and nine-step scales in
   `reuters_style.colors`, with a short usage guide.
 
 [Unreleased]: https://github.com/palewire/reuters-style/compare/1.0.0...HEAD

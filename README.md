@@ -1,6 +1,6 @@
 # reuters-style
 
-A Python library for Reuters editorial formatting and Graphics chart colours.
+A Python library for Reuters editorial formatting and Graphics chart colors.
 The current development setup supports Python 3.11 through 3.14.
 
 - [Documentation](https://palewi.re/docs/reuters-style/)
@@ -23,5 +23,5 @@ for tests, packaging and documentation.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more information and
 [RELEASING.md](RELEASING.md) for the release checklist.
 
-The [Graphics colours reference](docs/colors.md) shows the named palettes and
+The [Graphics colors reference](docs/colors.md) shows the named palettes and
 their use in Python.

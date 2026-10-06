@@ -1,6 +1,6 @@
-"""Reuters Graphics colours for charts and maps.
+"""Reuters Graphics colors for charts and maps.
 
-Each named palette is an immutable tuple, so its colours can be addressed by
+Each named palette is an immutable tuple, so its colors can be addressed by
 role or passed directly to a chart as an ordered sequence. Scales are stored
 as the nine exact stops in the Graphics guide, from low to high; diverging
 scales run from the negative side through the midpoint to the positive side.
@@ -64,7 +64,7 @@ class GraphicsMono(NamedTuple):
 
 
 class SemanticRoles(NamedTuple):
-    """Colours for emphasis, context, change, gaps and annotations."""
+    """Colors for emphasis, context, change, gaps and annotations."""
 
     focus: str
     muted: str
@@ -88,7 +88,7 @@ class GraphicsMaps(NamedTuple):
 
 
 class USPolitics(NamedTuple):
-    """Election result colours: wins, flips and a shared tie."""
+    """Election result colors: wins, flips and a shared tie."""
 
     rep_win: str
     rep_flip: str
