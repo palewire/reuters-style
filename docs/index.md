@@ -1,54 +1,35 @@
 # reuters-style
 
-A Python library that format dates, numbers and text to conform with the Reuters Style Guide, the standards that guide the world's largest independent newsroom
+A Python library for formatting dates and times and validating slugs in Reuters editorial style.
 
-```{contents} Sections
-  :depth: 1
-  :local:
+## Install
+
+```sh
+pip install reuters-style
 ```
 
-## Installation
+## Use
 
-Install the package from the Python Package Index (PyPI) with pipenv:
+```python
+from datetime import datetime
 
-```bash
-pipenv install reuters-style
+import reuters_style
+
+reuters_style.date(datetime(2021, 9, 1))  # "Sept. 1, 2021"
+reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS")  # True
 ```
 
-## Functions
+The [API reference](api) documents each formatter, validator and data object.
 
-A collection of functions for formatting date, text and numbers:
+```{toctree}
+:maxdepth: 2
+:hidden:
 
-* [date](#reuters_style.date)
-* [dayofweek](#reuters_style.dayofweek)
-* [time](#reuters_style.time)
-* [validate_slug](#reuters_style.validate_slug)
-* [validate_packaging_slug](#reuters_style.validate_packaging_slug)
-* [validate_wild_slug](#reuters_style.validate_wild_slug)
-
-```{eval-rst}
-.. autofunction:: reuters_style.date
-.. autofunction:: reuters_style.dayofweek
-.. autofunction:: reuters_style.time
-.. autofunction:: reuters_style.validate_slug
-.. autofunction:: reuters_style.validate_packaging_slug
-.. autofunction:: reuters_style.validate_wild_slug
+api
 ```
 
-## Objects
+## Project links
 
-A set of [dataclasses](https://docs.python.org/3/library/dataclasses.html) for formatting Reuters-specific objects:
-
-* [RIC](#reuters_style.RIC)
-* [Slug](#reuters_style.Slug)
-
-```{eval-rst}
-.. autoclass:: reuters_style.RIC
-.. autoclass:: reuters_style.Slug
-```
-
-## Links
-
-- Code: [github.com/palewire/reuters-style](https://github.com/palewire/reuters-style)
-- Issues: [github.com/palewire/reuters-style/issues](https://github.com/palewire/reuters-style/issues)
-- Packaging: [pypi.org/project/reuters-style](https://pypi.org/project/reuters-style)
+- [Source code](https://github.com/palewire/reuters-style)
+- [Issues](https://github.com/palewire/reuters-style/issues)
+- [Package on PyPI](https://pypi.org/project/reuters-style/)

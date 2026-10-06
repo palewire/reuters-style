@@ -1,8 +1,25 @@
-A Python library that format dates, numbers and text to conform with the Reuters Style Guide, the standards that guide the world's largest independent newsroom
+# reuters-style
 
-## Links
+A Python library for formatting dates and times and validating slugs in Reuters
+editorial style. The current development setup supports Python 3.11 through
+3.14.
 
-- Documentation: [palewi.re/docs/reuters-style/](https://palewi.re/docs/reuters-style/)
-- Code: [github.com/palewire/reuters-style](https://github.com/palewire/reuters-style)
-- Issues: [github.com/palewire/reuters-style/issues](https://github.com/palewire/reuters-style/issues)
-- Packaging: [pypi.org/project/reuters-style](https://pypi.org/project/reuters-style)
+- [Documentation](https://palewi.re/docs/reuters-style/)
+- [Source code](https://github.com/palewire/reuters-style)
+- [Issues](https://github.com/palewire/reuters-style/issues)
+- [PyPI](https://pypi.org/project/reuters-style/)
+
+## Install
+
+```sh
+pip install reuters-style
+```
+
+## Develop
+
+This project uses uv, Ruff, ty, pytest and Sphinx. Run `make bootstrap` to
+install the locked dependencies, `make check` for fast checks and `make verify`
+for tests, packaging and documentation.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more information and
+[RELEASING.md](RELEASING.md) for the release checklist.

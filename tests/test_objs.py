@@ -1,4 +1,5 @@
 """Test our dataclass objects."""
+
 import pytest
 
 import reuters_style
@@ -25,7 +26,7 @@ def test_slug():
     slug2 = reuters_style.Slug(
         packaging_slug="FERRARI-RESULssss ", wild_slug="PROSPECTUS"
     )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Full slug can only contain one slash"):
         slug2.validate()
 
     assert slug != slug2
