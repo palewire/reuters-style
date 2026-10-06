@@ -8,8 +8,8 @@ dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = []
 authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
-description = "Format dates, times and slugs in Reuters editorial style"
-keywords = ["reuters", "journalism", "style", "dates", "slugs"]
+description = "Reuters editorial formatting and Graphics chart colours"
+keywords = ["reuters", "journalism", "style", "dates", "slugs", "charts", "colours"]
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"

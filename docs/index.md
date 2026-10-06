@@ -1,6 +1,6 @@
 # reuters-style
 
-A Python library for formatting dates and times and validating slugs in Reuters editorial style.
+A Python library for Reuters editorial formatting and Graphics chart colours.
 
 ## Install
 
@@ -20,12 +20,14 @@ reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS")  # True
 ```
 
 The [API reference](api) documents each formatter, validator and data object.
+The [Graphics colours](colors) page is a quick reference for charts and maps.
 
 ```{toctree}
 :maxdepth: 2
 :hidden:
 
 api
+colors
 ```
 
 ## Project links
