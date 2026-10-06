@@ -1,8 +1,7 @@
 # reuters-style
 
-A Python library for formatting dates and times and validating slugs in Reuters
-editorial style. The current development setup supports Python 3.11 through
-3.14.
+A Python library for Reuters editorial formatting and Graphics chart colours.
+The current development setup supports Python 3.11 through 3.14.
 
 - [Documentation](https://palewi.re/docs/reuters-style/)
 - [Source code](https://github.com/palewire/reuters-style)
@@ -23,3 +22,6 @@ for tests, packaging and documentation.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more information and
 [RELEASING.md](RELEASING.md) for the release checklist.
+
+The [Graphics colours reference](docs/colors.md) shows the named palettes and
+their use in Python.
