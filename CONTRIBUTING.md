@@ -1,120 +1,36 @@
 # Contributing
 
-Clone the repository. Move into the directory on your terminal.
-
-Install dependencies for development.
+Install [uv](https://docs.astral.sh/uv/) and prepare the checkout:
 
 ```sh
-pipenv sync --dev
+make bootstrap
+uv run --no-env-file pre-commit install --install-hooks
 ```
 
-Install pre-commit to run a battery of automatic quick fixes against your work.
+`make bootstrap` installs locked dependencies. In a linked worktree it may link
+the primary checkout's ignored `.env` if one exists and creates an ignored
+`.env.worktree` for local settings. Neither file is loaded by this library.
+The command does not replace an existing local `.env`.
 
-```sh
-pipenv run pre-commit install
-```
+Run `make check` for non-mutating lint, format, type, dependency and workflow
+checks. Run `make verify` before proposing changes; it also runs tests, builds
+the distributions and checks the documentation. Run `make hooks` after changes
+to apply the repository's pre-commit hooks.
 
-Run tests.
-
-```sh
-pipenv run pytest
-```
+The source code lives in `src/reuters_style/`; tests live in `tests/`.
+Document public behavior in `docs/` and add an `Unreleased` changelog entry
+for user-facing changes.
 
 ## Documentation
 
-The repository includes a ready-to-serve documentation site managed by Python's [Sphinx](https://www.sphinx-doc.org/en/master/) framework.
+Use `make docs-check` to build the Sphinx documentation with warnings treated
+as errors, or `make serve-docs` to preview it locally. The documentation
+workflow builds on pull requests and checks external links weekly. Publishing
+to the existing documentation URL requires a protected `docs-production`
+environment, AWS OIDC role and `DOCS_DEPLOY_ENABLED=true` repository variable.
 
-The configuration is stored in the `docs` directory. The default settings in `docs/conf.py` include several common Sphinx extensions. The documentation is written in [Markdown](https://en.wikipedia.org/wiki/Markdown) files stored within the directory. If you plan to publish documentation, you should started by editing `docs/index.md` and go from there. You can learn more about the options to available in the [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) guide to writing Markdown in Sphinx.
+## Releases
 
-To build the documentation as a bundle of HTML files, run the following command:
-
-```zsh
-cd docs && pipenv run make html
-```
-
-You can launch a preview site with the following command:
-
-```zsh
-cd docs && pipenv run make livehtml
-```
-
-The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket after a push to the main branch.
-
-## Releasing
-
-# Releasing
-
-Our release process is automated as a [continuous deployment](https://en.wikipedia.org/wiki/Continuous_deployment) via the [GitHub Actions](https://github.com/features/actions) framework. The logic that governs the process is stored in the `workflows` directory.
-
-That means that everything necessary to make a release can be done with a few clicks on the GitHub website. All you need to do is make a [tagged release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository), then wait for the computers to handle the job.
-
-Before you can begin, you have to do the following one-time configuration:
-
-* Visit PyPI and [create an API key](https://pypi.org/help/#apitoken) with permission to release a package
-* Save the key as a secret called `PYPI_API_TOKEN` [in your repository settings](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
-
-Once that is done, you can automatically release new versions. Here’s how to do it, step by step. The screenshots are from a different repository, but the process is the same.
-
-## 1. Go to the releases page
-
-The first step is to visit your repository's homepage and click on the "releases" headline in the right rail.
-
-![Release button](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-releases-button.png)
-
-## 2. Click 'Draft a new release'
-
-Note the number of the latest release. Click the "Draft a new release" button in the upper-right corner. If you don't see this button, you do not have permission to make a release. Only the maintainers of the repository are able to release new code.
-
-![Draft button](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-draft-button.png)
-
-## 3. Create a new tag
-
-Think about how big your changes are and decide if you're a major, minor or patch release.
-
-All version numbers should feature three numbers separated by the periods, like `1.0.1`. If you're making a major release that isn't backwards compatible, the latest release’s first number should go up by one. If you're making a minor release by adding a feature or major a large change, the second number should go up. If you're only fixing bugs or making small changes, the third number should go up.
-
-If you're unsure, review the standards defined at [semver.org](https://semver.org) to help make a decision. In the end don't worry about it too much. Our version numbers don't need to be perfect. They just need to be three numbers separated by periods.
-
-Once you've settled on the number for your new release, click on the "Choose a tag" pull down.
-
-![Tag button](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-tag-button.png)
-
-Enter your version number into the box. Then click the "Create new tag" option that appears.
-
-![Tag dropdown](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-name-tag.png)
-
-## 4. Name the release
-
-Enter the same number into the "Release title" box.
-
-![Name box](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-name-release.png)
-
-## 5. Auto-generate release notes
-
-Click the "Auto-generate release notes" button in the upper right corner of the large description box.
-
-![Auto-generate release notes button](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-changelog-button.png)
-
-That should fill in the box below. What appears will depend on how many pull requests you've merged since the last release.
-
-![Auto-generate release notes results](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-changelog-entered.png)
-
-## 6. Publish the release
-
-Click the green button that says "Publish release" at the bottom of the page.
-
-![Publish button](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-publish-button.png)
-
-## 7. Wait for the Action to finish
-
-GitHub will take you to a page dedicated to your new release and start an automated process that release our new version to the world. Follow its progress by clicking on the Actions tab near the top of the page.
-
-![Release page](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-release-published.png)
-
-That will take you to the Actions monitoring page. The task charged with publishing your release should be at the top.
-
-![Actions page](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-actions-start.png)
-
-After a few minutes, the process there should finish and show a green check mark. When it does, visit your package’s page on [PyPI](https://pypi.org/), where you should see the latest version displayed at the top of the page.
-
-If the action fails, something has gone wrong with the deployment process. You can click into its debugging panel to search for the cause or ask the project maintainers for help.
+Follow [RELEASING.md](RELEASING.md). A version tag triggers trusted PyPI
+publication; do not create a tag until the PyPI trusted publisher is configured
+and the release is approved.

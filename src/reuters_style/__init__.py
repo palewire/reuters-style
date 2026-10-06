@@ -1,7 +1,9 @@
+"""Format dates, times and slugs in Reuters editorial style."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 
 def date(dt: datetime) -> str:
@@ -136,7 +138,7 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
         >>> reuters_style.time(datetime(2021, 9, 1, 12, 30), include_timezone=False)
         '12:30 p.m.'
         >>> import pytz
-        >>> tz = pytz.timezone('Africa/Johannesburg')
+        >>> tz = pytz.timezone("Africa/Johannesburg")
         >>> dt = tz.localize(datetime(2021, 9, 1, 12, 30))
         >>> reuters_style.time(dt)
         '12:30 p.m. SAST'
@@ -187,8 +189,8 @@ def time(dt: datetime, include_timezone: bool = True) -> str:
     else:
         # ... we need to append GMT in cases where we have a local datetime ...
         # ... assuming it's not already UTC.
-        if dt.tzinfo and dt.tzinfo != timezone.utc:
-            gmt_time = dt.astimezone(timezone.utc)
+        if dt.tzinfo and dt.tzinfo != UTC:
+            gmt_time = dt.astimezone(UTC)
             formatted_time += f" ({gmt_time.strftime('%H%M')} GMT)"
 
     # Format the time
@@ -223,9 +225,9 @@ def validate_slug(slug: str) -> bool:
 
     Examples:
         >>> import reuters_style
-        >>> reuters_style.validate_slug('FERRARI-IPO/PROSPECTUS')
+        >>> reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS")
         True
-        >>> reuters_style.validate_slug('FERRARI-IPO/PROSPECTUS REPORT')
+        >>> reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS REPORT")
         Traceback (most recent call last):
             ...
         ValueError: Wild slug can only contain uppercase letters, hyphens and slashes.
@@ -294,9 +296,9 @@ def validate_packaging_slug(slug: str) -> bool:
 
     Examples:
         >>> import reuters_style
-        >>> reuters_style.validate_packaging_slug('FERRARI-IPO/')
+        >>> reuters_style.validate_packaging_slug("FERRARI-IPO/")
         True
-        >>> reuters_style.validate_packaging_slug('FERRaRI IPO')
+        >>> reuters_style.validate_packaging_slug("FERRaRI IPO")
         Traceback (most recent call last):
             ...
         ValueError: Packaging slug can only contain uppercase letters, hyphens and slashes.
@@ -386,9 +388,9 @@ def validate_wild_slug(slug: str) -> bool:
 
     Examples:
         >>> import reuters_style
-        >>> reuters_style.validate_wild_slug('PROSPECTUS')
+        >>> reuters_style.validate_wild_slug("PROSPECTUS")
         True
-        >>> reuters_style.validate_wild_slug('PROSPECTUS REPORT')
+        >>> reuters_style.validate_wild_slug("PROSPECTUS REPORT")
         Traceback (most recent call last):
             ...
         ValueError: Wild slug can only contain uppercase letters, hyphens and slashes.
@@ -456,9 +458,9 @@ class RIC:
 
     Examples:
         >>> import reuters_style
-        >>> reuters_style.RIC(code='AAPL.O', title='Apple Inc')
+        >>> reuters_style.RIC(code="AAPL.O", title="Apple Inc")
         RIC(code='AAPL.O', title='Apple Inc')
-        >>> obj = reuters_style.RIC(code='XAU=', title='Gold')
+        >>> obj = reuters_style.RIC(code="XAU=", title="Gold")
         >>> obj.code
         'XAU='
         >>> obj.title
@@ -503,9 +505,11 @@ class Slug:
 
     Examples:
         >>> import reuters_style
-        >>> reuters_style.Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
+        >>> reuters_style.Slug(packaging_slug="FERRARI-IPO/", wild_slug="PROSPECTUS")
         Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
-        >>> obj = reuters_style.Slug(packaging_slug='FERRARI-IPO/', wild_slug='PROSPECTUS')
+        >>> obj = reuters_style.Slug(
+        ...     packaging_slug="FERRARI-IPO/", wild_slug="PROSPECTUS"
+        ... )
         >>> obj.packaging_slug
         'FERRARI-IPO/'
         >>> obj.wild_slug

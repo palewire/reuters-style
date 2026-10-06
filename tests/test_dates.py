@@ -1,5 +1,6 @@
 """Test the date methods."""
-from datetime import datetime, timezone
+
+from datetime import UTC, datetime
 
 import pytz
 
@@ -51,12 +52,10 @@ def test_time():
         == "12:30 p.m."
     )
     assert (
-        reuters_style.time(datetime(2021, 9, 1, 12, 30, tzinfo=timezone.utc))
-        == "12:30 p.m. GMT"
+        reuters_style.time(datetime(2021, 9, 1, 12, 30, tzinfo=UTC)) == "12:30 p.m. GMT"
     )
     assert (
-        reuters_style.time(datetime(2021, 9, 1, 0, 30, tzinfo=timezone.utc))
-        == "12:30 a.m. GMT"
+        reuters_style.time(datetime(2021, 9, 1, 0, 30, tzinfo=UTC)) == "12:30 a.m. GMT"
     )
     tz = pytz.timezone("Africa/Johannesburg")
     assert (
