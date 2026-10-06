@@ -1,6 +1,6 @@
 # reuters-style
 
-A Python library for Reuters editorial formatting and Graphics chart colours.
+A Python library for Reuters editorial formatting and Graphics chart colors.
 
 ## Install
 
@@ -20,7 +20,7 @@ reuters_style.validate_slug("FERRARI-IPO/PROSPECTUS")  # True
 ```
 
 The [API reference](api) documents each formatter, validator and data object.
-The [Graphics colours](colors) page is a quick reference for charts and maps.
+The [Graphics colors](colors) page is a quick reference for charts and maps.
 
 ```{toctree}
 :maxdepth: 2

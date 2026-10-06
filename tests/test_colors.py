@@ -1,4 +1,4 @@
-"""Exact values and ordering from the Reuters Graphics colour guide."""
+"""Exact values and ordering from the Reuters Graphics color guide."""
 
 import pytest
 
@@ -6,7 +6,7 @@ from reuters_style import colors
 
 
 def test_named_palettes() -> None:
-    """Check every named colour and the recommended order.
+    """Check every named color and the recommended order.
 
     Returns:
         None. Assertions fail if a guide value or name changes.
@@ -256,7 +256,7 @@ def test_exact_scale_stops(
 
     Args:
         scale: The exported scale to inspect.
-        expected: The exact nine colours in the Graphics guide.
+        expected: The exact nine colors in the Graphics guide.
 
     Returns:
         None. Assertions fail if any stop or its position changes.
@@ -272,7 +272,7 @@ def test_scale_relationships() -> None:
     """Check shared endpoints and the common diverging midpoint.
 
     Returns:
-        None. Assertions fail when a shared guide colour differs.
+        None. Assertions fail when a shared guide color differs.
 
     Examples:
         >>> test_scale_relationships()
